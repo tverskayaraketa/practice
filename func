@@ -1,0 +1,157 @@
+#include "func.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+typedef struct VAZ Devyatka;
+
+Devyatka* Constructor(char* carname, int fuel, int hp, int toner, int tuning)
+{
+	Devyatka* heli = malloc(sizeof(Devyatka));
+	if (!heli)
+		return NULL;
+
+	if (fuel > 43)
+		heli->fuel = 43;
+	else
+		heli->fuel = fuel;
+
+	if (hp > 72)
+		heli->hp = 72;
+	else
+		heli->hp = hp;
+
+	if (tuning > 3)
+		heli->tuning = 3;
+	else
+		heli->tuning = tuning;
+
+	if (toner > 5)
+		heli->toner = 5;
+	else
+		heli->toner = toner;
+
+	int len = strlen(carname);
+	heli->carname = malloc(len * sizeof(char*));
+	if (!heli->carname)
+	{
+		perror("ERROR: NO NAME");
+		free(heli);
+		return NULL;
+	}
+
+	int i = 0;
+
+	for (; i < len; i++)
+		heli->carname[i] = carname[i];
+
+	heli->carname[i] = '\0';
+
+	return heli;
+}
+
+void Licence(Devyatka heli)
+{
+	srand(time(NULL));
+	heli.tuning = rand() % 10 + 1;
+
+	if (heli.tuning >= 5)
+	{
+		
+		printf("12.5.1 hahahah give ur driving licence!\n");
+	}
+
+	
+}
+
+
+
+void Refuel(Devyatka heli)
+{
+	if (heli.fuel <= 21)
+	{
+		int a;
+		printf("need fuel, 1 if u want", a);
+		scanf_s("%d", a);
+		if (a == 1)
+		{
+			heli.fuel = 43;
+			printf("Fuel is full! we can hasan.\n");
+		}
+		else
+			printf("need fuel, 1 if u want", a);
+	}
+	
+}
+
+void Gai(Devyatka heli)
+{
+	srand(time(NULL));
+	int musora = rand() % 10 + 1;
+	srand(time(NULL));
+	int horsepower = rand(301);
+
+	if (musora <= 2 || heli.fuel > 20 || horsepower>= 200)
+		printf("go away!!");
+	else
+		printf("oh shit...");
+}
+
+
+
+void Change(Devyatka heli)
+{
+	int q;
+	printf("do u want to change toner? 1- yes 2-no", q);
+	scanf_s("%d", q);
+	if (q == 1)
+		heli.toner = 100;
+	else
+		heli.toner = heli.toner;
+	
+}
+
+void hasan(Devyatka heli)
+{
+	heli.fuel -= rand() % 10;
+	if (heli.fuel <= 5)
+	{
+		heli.fuel = 5;
+		printf("No fuel we cant hasan\n");
+	}
+	else
+	{
+		if (heli.fuel >= 5 || heli.fuel <= 20)
+		{
+			printf("need more fuel to hasan!");
+			Refuel;
+		}
+		else
+			printf("we can hasan!");
+	}
+}
+
+void TUNUNG(Devyatka heli)
+{
+	int w;
+	printf("do u want more hp? 1- yes 2-no", w);
+	scanf_s("%d",w);
+	if (w == 1)
+	{
+		
+
+	}
+
+}
+
+Devyatka* Destructor(Devyatka* heli)
+{
+	free(heli->tuning);
+	free(heli->fuel);
+	free(heli->hp);
+	free(heli->toner);
+	free(heli->carname);
+	free(heli);
+	return NULL;
+}
