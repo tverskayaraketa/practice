@@ -11,14 +11,14 @@ typedef struct VAZ
 
 Devyatka* Constructor(char* name, int fuel, int hp, int toner, int tuning);
 
-void Licence(Devyatka heli);
+void Licence(Devyatka laiba);
 
-void Refuel(Devyatka heli);
+void Refuel(Devyatka laiba);
 
-void Gai(Devyatka heli);
+void Gai(Devyatka laiba);
 
-void Change(Devyatka heli);
+void Change(Devyatka laiba);
 
-void hasan(Devyatka heli);
+void hasan(Devyatka laiba);
 
-Devyatka* Destructor(Devyatka heli);
+Devyatka* Destructor(Devyatka laiba);
