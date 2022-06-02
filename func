@@ -4,59 +4,60 @@
 #include <string.h>
 #include <time.h>
 
+
 typedef struct VAZ Devyatka;
 
 Devyatka* Constructor(char* carname, int fuel, int hp, int toner, int tuning)
 {
-	Devyatka* heli = malloc(sizeof(Devyatka));
-	if (!heli)
+	Devyatka* laiba = malloc(sizeof(Devyatka));
+	if (! laiba)
 		return NULL;
 
 	if (fuel > 43)
-		heli->fuel = 43;
+		laiba->fuel = 43;
 	else
-		heli->fuel = fuel;
+		laiba->fuel = fuel;
 
 	if (hp > 72)
-		heli->hp = 72;
+		laiba->hp = 72;
 	else
-		heli->hp = hp;
+		laiba->hp = hp;
 
 	if (tuning > 3)
-		heli->tuning = 3;
+		laiba->tuning = 3;
 	else
-		heli->tuning = tuning;
+		laiba->tuning = tuning;
 
 	if (toner > 5)
-		heli->toner = 5;
+		laiba->toner = 5;
 	else
-		heli->toner = toner;
+		laiba->toner = toner;
 
 	int len = strlen(carname);
-	heli->carname = malloc(len * sizeof(char*));
-	if (!heli->carname)
+	laiba->carname = malloc(len * sizeof(char*));
+	if (! laiba->carname)
 	{
 		perror("ERROR: NO NAME");
-		free(heli);
+		free(laiba);
 		return NULL;
 	}
 
 	int i = 0;
 
 	for (; i < len; i++)
-		heli->carname[i] = carname[i];
+		laiba->carname[i] = carname[i];
 
-	heli->carname[i] = '\0';
+	laiba->carname[i] = '\0';
 
-	return heli;
+	return laiba;
 }
 
-void Licence(Devyatka heli)
+void Licence(Devyatka laiba)
 {
 	srand(time(NULL));
-	heli.tuning = rand() % 10 + 1;
+	laiba.tuning = rand() % 10 + 1;
 
-	if (heli.tuning >= 5)
+	if (laiba.tuning >= 5)
 	{
 		
 		printf("12.5.1 hahahah give ur driving licence!\n");
@@ -67,16 +68,16 @@ void Licence(Devyatka heli)
 
 
 
-void Refuel(Devyatka heli)
+void Refuel(Devyatka laiba)
 {
-	if (heli.fuel <= 21)
+	if (laiba.fuel <= 21)
 	{
 		int a;
 		printf("need fuel, 1 if u want", a);
 		scanf_s("%d", a);
 		if (a == 1)
 		{
-			heli.fuel = 43;
+			laiba.fuel = 43;
 			printf("Fuel is full! we can hasan.\n");
 		}
 		else
@@ -85,14 +86,14 @@ void Refuel(Devyatka heli)
 	
 }
 
-void Gai(Devyatka heli)
+void Gai(Devyatka laiba)
 {
 	srand(time(NULL));
 	int musora = rand() % 10 + 1;
 	srand(time(NULL));
 	int horsepower = rand(301);
 
-	if (musora <= 2 || heli.fuel > 20 || horsepower>= 200)
+	if (musora <= 2 || laiba.fuel > 20 || horsepower>= 200)
 		printf("go away!!");
 	else
 		printf("oh shit...");
@@ -100,29 +101,29 @@ void Gai(Devyatka heli)
 
 
 
-void Change(Devyatka heli)
+void Change(Devyatka laiba)
 {
 	int q;
 	printf("do u want to change toner? 1- yes 2-no", q);
 	scanf_s("%d", q);
 	if (q == 1)
-		heli.toner = 100;
+		laiba.toner = 100;
 	else
-		heli.toner = heli.toner;
+		laiba.toner = heli.toner;
 	
 }
 
-void hasan(Devyatka heli)
+void hasan(Devyatka laiba)
 {
-	heli.fuel -= rand() % 10;
-	if (heli.fuel <= 5)
+	laiba.fuel -= rand() % 10;
+	if (laiba.fuel <= 5)
 	{
-		heli.fuel = 5;
+		laiba.fuel = 5;
 		printf("No fuel we cant hasan\n");
 	}
 	else
 	{
-		if (heli.fuel >= 5 || heli.fuel <= 20)
+		if (laiba.fuel >= 5 || laiba.fuel <= 20)
 		{
 			printf("need more fuel to hasan!");
 			Refuel;
@@ -132,7 +133,7 @@ void hasan(Devyatka heli)
 	}
 }
 
-void TUNUNG(Devyatka heli)
+void TUNUNG(Devyatka laiba)
 {
 	int w;
 	printf("do u want more hp? 1- yes 2-no", w);
@@ -145,13 +146,13 @@ void TUNUNG(Devyatka heli)
 
 }
 
-Devyatka* Destructor(Devyatka* heli)
+Devyatka* Destructor(Devyatka* laiba)
 {
-	free(heli->tuning);
-	free(heli->fuel);
-	free(heli->hp);
-	free(heli->toner);
-	free(heli->carname);
-	free(heli);
+	free(laiba->tuning);
+	free(laiba->fuel);
+	free(laiba->hp);
+	free(laiba->toner);
+	free(laiba->carname);
+	free(laiba);
 	return NULL;
 }
